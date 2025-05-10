@@ -1,6 +1,4 @@
 'use client'
-import { useRef } from 'react'
-import VideoPlayer from './videoPlayer'
 import { useScroll, useTransform, motion } from 'motion/react'
 
 export default function VideoSection() {

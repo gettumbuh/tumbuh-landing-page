@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useAnimate } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export interface BubbleProps {
   id: number
@@ -18,7 +18,6 @@ export default function Bubble({
   initialX,
   initialY,
   maxSize,
-  timestamp,
   isPopRequested,
 }: BubbleProps) {
   const [scope, animate] = useAnimate()
