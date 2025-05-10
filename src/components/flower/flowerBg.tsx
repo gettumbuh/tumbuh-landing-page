@@ -8,7 +8,7 @@ import BadgesContainer from '../badges/badgesContainer'
 const MAX_SIZE = 6
 const BUBBLE_LIFETIME = 60000 // 60 seconds in milliseconds
 
-const MAIN_ADJECTIVES = ['Coordinating', 'Fighting', 'One']
+const MAIN_ADJECTIVES = ['Coordinating', 'Fighting back', 'One']
 const SECONDARY_ADJECTIVES = [
   'relentless',
   'unyielding',
@@ -33,7 +33,7 @@ const SECONDARY_ADJECTIVES = [
 ]
 
 // Timing constants (in milliseconds)
-const MAIN_ADJECTIVE_DURATION = 15000 // 4 seconds
+const MAIN_ADJECTIVE_DURATION = 4000 // 4 seconds
 const SECONDARY_ADJECTIVE_DURATION = 80 // 1 second
 
 const generateRandomBubbles = (
@@ -169,11 +169,6 @@ export default function FlowerBg() {
   }, [])
 
   useEffect(() => {
-    // Initialize with some bubbles
-    const initialBubbles = generateRandomBubbles(25, 0)
-    nextIdRef.current = initialBubbles.length
-    setBubbles(initialBubbles)
-
     // Start the animation loop
     frameIdRef.current = requestAnimationFrame(updateBubbles)
 
@@ -200,13 +195,19 @@ export default function FlowerBg() {
   // }
 
   return (
-    <div className="flex flex-col items-end justify-center w-full h-screen bg-black relative overflow-hidden">
+    <div className="flex flex-col items-end justify-center w-full h-dvh bg-black relative overflow-hidden">
       <div className="relative h-full w-full max-w-[500px]">
         <Image
           src="/images/flower.jpg"
           alt="logo"
           fill
           className="object-cover object-center"
+          onLoad={() => {
+            // Initialize with some bubbles
+            const initialBubbles = generateRandomBubbles(25, 0)
+            nextIdRef.current = initialBubbles.length
+            setBubbles(initialBubbles)
+          }}
         />
         {bubbles.map((bubble) => (
           <Bubble key={bubble.id} {...bubble} />
