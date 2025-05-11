@@ -1,6 +1,8 @@
 'use client'
 import { useScroll, useTransform, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import BadgesContainer from '../badges/badgesContainer'
+import Footer from '../footer/footer'
 
 export default function VideoSection() {
   const { scrollYProgress } = useScroll()
@@ -14,8 +16,8 @@ export default function VideoSection() {
   }, [])
 
   // Transform height from 300px to 150px based on scroll progress
-  const height = useTransform(scrollYProgress, [0, 1], [600, 300])
-  const mobileHeight = useTransform(scrollYProgress, [0, 1], [300, 150])
+  const height = useTransform(scrollYProgress, [0, 1], [600, 150])
+  const mobileHeight = useTransform(scrollYProgress, [0, 1], [600, 150])
 
   return (
     <div className="w-full min-h-dvh flex flex-col items-center justify-start">
@@ -35,22 +37,31 @@ export default function VideoSection() {
         </video>
       </motion.div>
 
-      <div className="w-full max-w-3xl space-y-8 text-white px-4 mt-12">
-        <p className="text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget
-          felis eget urna ultricies aliquet.
-        </p>
-        <p className="text-lg">
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-          posuere cubilia curae; Sed at magna euismod, fermentum nisi et,
-          aliquam eros.
-        </p>
-        <p className="text-lg">
-          Donec vitae justo vel nisl varius eleifend. Mauris porttitor, nisi vel
-          feugiat fringilla, nulla lacus aliquam nisl, vel fringilla nunc nisi
-          vel mi.
-        </p>
+      <div className="w-full max-w-3xl space-y-8 text-white px-4 py-16">
+        {[
+          `Tumbuh is the world's first truly autonomous garden.`,
+          `It is the largest collaboration between humans and agents to date, forming a massive, 
+          self-sustaining autonomous ecosystem with the ability to make decisions that create 
+          physical and economic networks ensuring equal growth for all participants.`,
+          `Starting as a permissionless garden, Tumbuh will evolve into a vast forest spanning 
+          the entire planet as it optimizes and creates new crypto-economic incentive structures 
+          that power the world's networks of essential resources. Through global coordination, 
+          it will ensure each participant has equal access to a growing number of essential resources.`,
+          `Traditionally, both agents and humans had to trade user experience for security and autonomy 
+          in their on-chain activities. Join Tumbuh to experience infinite walletless on-chain growth 
+          as we redefine nature as one big ecosystem of mutual prosperity.`,
+          `Become a part of humanity's final epic of survival and growth.`,
+        ].map((text, index) => (
+          <Text key={index} text={text} />
+        ))}
+        <BadgesContainer size="large" />
       </div>
+
+      <Footer />
     </div>
   )
+}
+
+function Text({ text }: { text: string }) {
+  return <p className="text-lg">{text}</p>
 }

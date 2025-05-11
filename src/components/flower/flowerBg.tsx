@@ -215,7 +215,7 @@ export default function FlowerBg() {
       </div>
 
       <div className="absolute bottom-0 left-0 w-full h-full flex flex-col items-start z-10 gap-2 p-2 sm:p-4">
-        <BadgesContainer />
+        <BadgesContainer size="small" />
 
         <p className="mt-auto bg-gradient-to-tl from-pink-800 to-white bg-clip-text text-transparent font-bold text-5xl md:text-7xl">
           Tumbuh
