@@ -6,6 +6,7 @@ import VideoSection from '../components/video/videoSection'
 import { useEffect, useState } from 'react'
 import ReplayTeaser from '@/components/floatingButton/replayTeaser'
 import Teaser from '@/components/teaser/teaser'
+import posthog from 'posthog-js'
 export default function Home() {
   const [loading, setLoading] = useState(true)
   const [isTeaserCompleted, setIsTeaserCompleted] = useState(true)
@@ -25,6 +26,7 @@ export default function Home() {
     return (
       <Teaser
         onComplete={() => {
+          posthog.capture('complete_teaser')
           localStorage.setItem('isTeaserCompleted', 'true')
           setTimeout(() => {
             window.scrollTo(0, 0)
@@ -47,6 +49,8 @@ export default function Home() {
         onClick={() => {
           setIsTeaserCompleted(false)
           localStorage.removeItem('isTeaserCompleted')
+
+          posthog.capture('replay_teaser')
         }}
       />
 
