@@ -7,7 +7,7 @@ export default function BadgesContainer({ size }: { size: 'small' | 'large' }) {
         title="H2O Zero-Day Mint"
         textColor="black"
         color="#0CABA8"
-        status="Starts in 3d"
+        status="Coming soon"
         size={size}
         href="/zero-day-mint"
       />
